@@ -50,6 +50,7 @@ struct ModeSettings: View {
                 actualDimensions: Settings[\.self].baseDimensions,
                 isGameplayMode: true, isExpanded: true, keybind: $keybinds.baseGKey,
                 posHints: ("", ""),
+                modeType: .base,
                 mode: $settings.baseMode
             )
 
@@ -59,6 +60,7 @@ struct ModeSettings: View {
                 actualDimensions: Settings[\.self].tallDimensions(
                     for: TrackingManager.shared.trackedInstances.first),
                 keybind: $keybinds.tallGKey,
+                modeType: .tall,
                 mode: $settings.tallMode
             )
 
@@ -68,6 +70,7 @@ struct ModeSettings: View {
                     "Thin is generally used for buried treasures, preemptive, and/or e-ray.",
                 actualDimensions: Settings[\.self].thinDimensions,
                 keybind: $keybinds.thinGKey,
+                modeType: .thin,
                 mode: $settings.thinMode
             )
 
@@ -76,6 +79,7 @@ struct ModeSettings: View {
                 description: "Wide is generally used for seeing further with planar fog.",
                 actualDimensions: Settings[\.self].wideDimensions,
                 keybind: $keybinds.planarGKey,
+                modeType: .wide,
                 mode: $settings.wideMode
             )
 
@@ -85,6 +89,7 @@ struct ModeSettings: View {
                     "Reset is used for wall mode, and is used to make your instances wider so you can see more on the preview.",
                 actualDimensions: Settings[\.self].resetDimensions,
                 posHints: ("", ""),
+                modeType: .reset,
                 mode: $settings.resetMode
             )
 

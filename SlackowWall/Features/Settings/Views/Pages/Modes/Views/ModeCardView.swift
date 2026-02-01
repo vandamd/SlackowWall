@@ -17,6 +17,7 @@ struct ModeCardView: View {
     var keybind: Binding<Keybinding>?
 
     var posHints: (String, String) = ("--", "--")
+    var modeType: ShortcutManager.WindowMode = .base
     @Binding var mode: Preferences.SizeMode
     @ObservedObject var trackingManager = TrackingManager.shared
 
@@ -165,7 +166,7 @@ struct ModeCardView: View {
         guard case (.some(let w), .some(let h), let x, let y) = actualDimensions else { return }
         trackingManager.trackedInstances.forEach { inst in
             ShortcutManager.shared.resize(
-                pid: inst.pid, x: x, y: y, width: w, height: h, force: true)
+                pid: inst.pid, mode: modeType, x: x, y: y, width: w, height: h, force: true)
         }
     }
 

@@ -48,8 +48,11 @@ class TrackingManager: ObservableObject {
                 trackedInstance.stream.clearCapture()
                 return false
             } else {
-                // Remove instance that no longer exists
                 LogManager.shared.appendLog("Removing instance \(trackedInstance.pid)")
+                let pid = trackedInstance.pid
+                Task { @MainActor in
+                    ShortcutManager.shared.clearMode(for: pid)
+                }
                 return true
             }
         }
